@@ -1,5 +1,16 @@
-import { VStack } from "native-base";
+import { VStack, Image } from "native-base";
 
-export function SignIn(){
-    return <VStack flex={1} bg="blue.100"></VStack>
+import BackgroundImg from '@assets/background.png';
+
+export function SignIn() {
+  return (
+    <VStack flex={1} bg="gray.700">
+      <Image 
+        source={BackgroundImg}
+        alt="Pessoas treinando"
+        resizeMode="contain"
+        position="absolute"
+      />
+    </VStack>
+  );
 }
