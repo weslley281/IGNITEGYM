@@ -21,7 +21,11 @@ export function SignIn() {
         </Text>
       </Center>
 
-      <Heading>Acesse sua conta</Heading>
+      <Center>
+        <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading">
+          Acesse sua conta
+        </Heading>
+      </Center>
     </VStack>
   );
 }
