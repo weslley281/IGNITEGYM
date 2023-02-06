@@ -23,8 +23,6 @@ export function SignIn() {
       </Center>
 
       <Heading>Acesse sua conta</Heading>
-
-      <Input />
     </VStack>
   );
 }
