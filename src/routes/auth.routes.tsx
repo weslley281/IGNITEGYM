@@ -10,16 +10,15 @@ type AuthRoutes = {
   signUp: undefined;
 };
 
-//  export interface AuthNavigatorRoutesProps extends NativeStackNavigationProp<AuthRoutes> {}
-
 export type AuthNavigatorRoutesProps = NativeStackNavigationProp<AuthRoutes>;
 
-export const { Navigator, Screen } = createNativeStackNavigator<AuthRoutes>();
+const { Navigator, Screen } = createNativeStackNavigator<AuthRoutes>();
 
 export function AuthRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }} initialRouteName="signIn">
+    <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="signIn" component={SignIn} />
+
       <Screen name="signUp" component={SignUp} />
     </Navigator>
   );
