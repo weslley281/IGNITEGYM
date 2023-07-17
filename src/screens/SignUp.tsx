@@ -4,13 +4,18 @@ import BackgroundImg from '@assets/background.png';
 
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
+import { useNavigation } from '@react-navigation/native';
+import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
 
 export function SignUp() {
+  const { goBack } = useNavigation<AuthNavigatorRoutesProps>();
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <VStack flex={1} bg="gray.700" px={10} pb={16}>
+      <VStack flex={1} px={10} pb={16}>
         <Image
           source={BackgroundImg}
+          defaultSource={BackgroundImg}
           alt="Pessoas treinando"
           resizeMode="contain"
           position="absolute"
@@ -39,7 +44,12 @@ export function SignUp() {
           <Button title="Criar e Acessar" />
         </Center>
 
-        <Button mt={24} title="Voltar a Tela de Login" variant="outline" />
+        <Button
+          mt={24}
+          title="Voltar a Tela de Login"
+          variant="outline"
+          onPress={() => goBack()}
+        />
       </VStack>
     </ScrollView>
   );
