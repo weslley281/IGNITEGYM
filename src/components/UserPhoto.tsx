@@ -5,5 +5,7 @@ type Props = IImageProps & {
 }
 
 export function UserPhoto({size, ...rest}: Props){
-    return(<Image />)
+    return(
+        <Image />
+        )
 }
