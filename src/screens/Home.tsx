@@ -1,6 +1,7 @@
+import { ExerciseCard } from '@components/ExerciseCard';
 import { Group } from '@components/Group';
 import { HomeHeader } from '@components/HomeHeader';
-import { Center, FlatList, HStack, Text, VStack } from 'native-base';
+import { Center, FlatList, HStack, Heading, Text, VStack } from 'native-base';
 import { useState } from 'react';
 
 export function Home() {
@@ -33,6 +34,17 @@ export function Home() {
           />
         )}
       />
+
+      <VStack flex={1} px={8}>
+        <HStack justifyContent={'space-between'} mb={5}>
+          <Heading color={'gray.200'}>Exercícios</Heading>
+          <Text color={'gray.100'} fontSize={'sm'}>
+            4
+          </Text>
+        </HStack>
+
+        <ExerciseCard />
+      </VStack>
     </VStack>
   );
 }
