@@ -3,6 +3,7 @@ import { Group } from '@components/Group';
 import { HomeHeader } from '@components/HomeHeader';
 import { FlatList, HStack, Heading, Text, VStack } from 'native-base';
 import { useState } from 'react';
+import unidecode from 'unidecode';
 
 export function Home() {
   const [groups, setGroups] = useState([
@@ -17,7 +18,7 @@ export function Home() {
     'Panturrilhas',
     'Trapézio',
   ]);
-  const [groupSelected, setGroupSelected] = useState('costa');
+  const [groupSelected, setGroupSelected] = useState('Costas');
   const [exercises, setExercises] = useState([
     'Remada inclinada com halteres',
     'Remada unilateral com halteres',
@@ -46,7 +47,10 @@ export function Home() {
         renderItem={({ item }) => (
           <Group
             name={item}
-            isActive={groupSelected === item}
+            isActive={
+              unidecode(groupSelected).toLocaleLowerCase() ===
+              unidecode(item).toLocaleLowerCase()
+            }
             onPress={() => setGroupSelected(item)}
           />
         )}
