@@ -1,18 +1,35 @@
 import { ExerciseCard } from '@components/ExerciseCard';
 import { Group } from '@components/Group';
 import { HomeHeader } from '@components/HomeHeader';
-import { Center, FlatList, HStack, Heading, Text, VStack } from 'native-base';
+import { FlatList, HStack, Heading, Text, VStack } from 'native-base';
 import { useState } from 'react';
 
 export function Home() {
   const [groups, setGroups] = useState([
-    'costas',
-    'ombro',
-    'biceps',
-    'peito',
-    'triceps',
+    'Costas',
+    'Peitoral',
+    'Ombros',
+    'Bíceps',
+    'Tríceps',
+    'Pernas',
+    'Abdômen',
+    'Glúteos',
+    'Panturrilhas',
+    'Trapézio',
   ]);
   const [groupSelected, setGroupSelected] = useState('costa');
+  const [exercises, setExercises] = useState([
+    'Remada inclinada com halteres',
+    'Remada unilateral com halteres',
+    'Remada curvada com halteres',
+    'Remada alta com halteres',
+    'Elevação lateral inclinada',
+    'Puxada frontal com halteres',
+    'Remada com halteres e rotação externa',
+    'Levantamento terra com halteres',
+    'Encolhimento de ombros com halteres',
+    'Superman com halteres',
+  ]);
 
   return (
     <VStack flex={1}>
@@ -43,7 +60,13 @@ export function Home() {
           </Text>
         </HStack>
 
-        <ExerciseCard />
+        <FlatList
+          data={exercises}
+          keyExtractor={(item) => item}
+          showsVerticalScrollIndicator={false}
+          _contentContainerStyle={{ paddingBottom: 20 }}
+          renderItem={({ item }) => <ExerciseCard />}
+        />
       </VStack>
     </VStack>
   );
