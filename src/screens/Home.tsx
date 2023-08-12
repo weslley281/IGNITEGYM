@@ -1,6 +1,8 @@
 import { ExerciseCard } from '@components/ExerciseCard';
 import { Group } from '@components/Group';
 import { HomeHeader } from '@components/HomeHeader';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { FlatList, HStack, Heading, Text, VStack } from 'native-base';
 import { useState } from 'react';
 import unidecode from 'unidecode';
@@ -31,6 +33,12 @@ export function Home() {
     'Encolhimento de ombros com halteres',
     'Superman com halteres',
   ]);
+
+  const { navigate } = useNavigation<AppNavigatorRoutesProps>();
+
+  function handleOpenExerciseDetails() {
+    navigate('exercise');
+  }
 
   return (
     <VStack flex={1}>
@@ -69,7 +77,9 @@ export function Home() {
           keyExtractor={(item) => item}
           showsVerticalScrollIndicator={false}
           _contentContainerStyle={{ paddingBottom: 20 }}
-          renderItem={({ item }) => <ExerciseCard />}
+          renderItem={({ item }) => (
+            <ExerciseCard onPress={handleOpenExerciseDetails} />
+          )}
         />
       </VStack>
     </VStack>

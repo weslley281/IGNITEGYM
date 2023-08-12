@@ -28,7 +28,7 @@ export function ExerciseCard({ ...rest }: Props) {
           <Heading color={'white'} fontSize={'lg'}>
             Remada Unilateral
           </Heading>
-          <Text color={'grey.200'} fontSize={'sm'} mt={1} numberOfLines={2}>
+          <Text color={'grey.100'} fontSize={'sm'} mt={1} numberOfLines={2}>
             3 séries x 12 repetiçoes
           </Text>
         </VStack>
