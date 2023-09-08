@@ -1,48 +1,86 @@
-<<<<<<< HEAD
-import { Center, Text, VStack, Image } from 'native-base';
-import man_working_out from '../assets/exercises/man-working-out.jpg';
-=======
-import { HStack, Heading, Icon, Text, VStack } from 'native-base';
 import { TouchableOpacity } from 'react-native';
+import { Box, Heading, HStack, Icon, Image, Text, VStack } from 'native-base';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
-import BodySVG from '@assets/body.svg';
->>>>>>> f3c4b1bd981f9c402e333540711fd8bfbf5b00d0
+
+import BodySvg from '@assets/body.svg';
+import SeriesSvg from '@assets/series.svg';
+import RepetitionsSvg from '@assets/repetitions.svg';
+import { Button } from '@components/Button';
 
 export function Exercise() {
-  const { navigate, goBack } = useNavigation<AppNavigatorRoutesProps>();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
 
   return (
     <VStack flex={1}>
-<<<<<<< HEAD
-      <VStack px={8} bg={'gray.600'} pt={12}></VStack>
-      <VStack p={8}>
-        <Image w={'full'} h={80} src={man_working_out} />
-=======
-      <VStack px={8} bg={'gray.600'} pt={12}>
-        <TouchableOpacity onPress={goBack}>
-          <Icon as={Feather} name="arrow-left" color={'green.400'} size={6} />
+      <VStack px={8} bg="gray.600" pt={12}>
+        <TouchableOpacity onPress={handleGoBack}>
+          <Icon as={Feather} name="arrow-left" color="green.500" size={6} />
         </TouchableOpacity>
 
         <HStack
-          justifyContent={'space-between'}
+          justifyContent="space-between"
           mt={4}
           mb={8}
-          alignItems={'center'}
+          alignItems="center"
         >
-          <Heading color={'gray.100'} fontSize={'lg'} flexShrink={1}>
-            Puchada Frontal
+          <Heading color="gray.100" fontSize="lg" flexShrink={1}>
+            Puxada frontal
           </Heading>
 
-          <HStack alignItems={'center'}>
-            <BodySVG />
-            <Text color={'gray.200'} ml={1} textTransform={'capitalize'}>
+          <HStack alignItems="center">
+            <BodySvg />
+
+            <Text color="gray.200" ml={1} textTransform="capitalize">
               Costas
             </Text>
           </HStack>
         </HStack>
->>>>>>> f3c4b1bd981f9c402e333540711fd8bfbf5b00d0
+      </VStack>
+
+      <VStack p={8}>
+        <Image
+          w="full"
+          h={80}
+          source={{
+            uri: 'http://conteudo.imguol.com.br/c/entretenimento/0c/2019/12/03/remada-unilateral-com-halteres-1575402100538_v2_600x600.jpg',
+          }}
+          alt="Nome do exercício"
+          mb={3}
+          resizeMode="cover"
+          rounded="lg"
+        />
+
+        <Box bg="gray.600" rounded="md" pb={4} px={4}>
+          <HStack
+            alignItems="center"
+            justifyContent="space-around"
+            mb={6}
+            mt={5}
+          >
+            <HStack>
+              <SeriesSvg />
+              <Text color="gray.200" ml="2">
+                3 séries
+              </Text>
+            </HStack>
+
+            <HStack>
+              <RepetitionsSvg />
+              <Text color="gray.200" ml="2">
+                12 repetições
+              </Text>
+            </HStack>
+          </HStack>
+
+          <Button title="Marcar como realizado" />
+        </Box>
       </VStack>
     </VStack>
   );
