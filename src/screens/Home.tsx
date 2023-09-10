@@ -51,6 +51,7 @@ export function Home() {
         showsHorizontalScrollIndicator={false}
         my={10}
         maxH={10}
+        minH={10}
         _contentContainerStyle={{ px: 8 }}
         renderItem={({ item }) => (
           <Group

@@ -13,7 +13,7 @@ export function HistoryCard({ title }: Props) {
       alignItems={'center'}
       justifyContent={'space-between'}
     >
-      <VStack>
+      <VStack mr={5} flex={1}>
         <Heading color={'white'} fontSize={'md'} textTransform={'capitalize'}>
           {title}
         </Heading>
