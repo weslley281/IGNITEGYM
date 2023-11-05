@@ -7,6 +7,7 @@ import {
   Skeleton,
   Text,
   Heading,
+  useToast,
 } from 'native-base';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
@@ -23,6 +24,8 @@ export function Profile() {
   const [userPhoto, setUserPhoto] = useState(
     'https://github.com/rodrigorgtic.png'
   );
+
+  const toast = useToast();
 
   async function handleUserPhotoSelected() {
     setPhotoIsLoading(true);
@@ -44,10 +47,12 @@ export function Profile() {
           photoSelected.assets[0].uri
         );
 
-        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 5) {
-          return Alert.alert(
-            'Essa imagem é muito grande. Escolha uma de até 5MB'
-          );
+        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 3) {
+          return toast.show({
+            title: 'Essa imagem é muito grande. Escolha uma de até 3MB',
+            placement: 'top',
+            bgColor: 'red.500',
+          });
         }
 
         setUserPhoto(photoSelected.assets[0].uri);
