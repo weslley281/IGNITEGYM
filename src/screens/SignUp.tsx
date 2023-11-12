@@ -6,9 +6,18 @@ import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
+import { useState } from 'react';
 
 export function SignUp() {
   const { goBack } = useNavigation<AuthNavigatorRoutesProps>();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassWord] = useState('');
+  const [password2, setPassWord2] = useState('');
+
+  function handleSignUp() {
+    console.log({ nome: name, password: password, email: email });
+  }
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -31,17 +40,28 @@ export function SignUp() {
             Crie a conta
           </Heading>
 
-          <Input placeholder="Nome" />
+          <Input placeholder="Nome" onChangeText={setName} />
 
           <Input
             placeholder="E-mail"
             keyboardType="email-address"
             autoCapitalize="none"
+            onChangeText={setEmail}
           />
 
-          <Input placeholder="Senha" secureTextEntry />
+          <Input
+            placeholder="Senha"
+            secureTextEntry
+            onChangeText={setPassWord}
+          />
 
-          <Button title="Criar e Acessar" />
+          <Input
+            placeholder="Confirmar a Senha"
+            secureTextEntry
+            onChangeText={setPassWord2}
+          />
+
+          <Button title="Criar e Acessar" onPress={handleSignUp} />
         </Center>
 
         <Button
