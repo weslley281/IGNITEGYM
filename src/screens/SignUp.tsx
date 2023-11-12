@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { VStack, Image, Text, Center, Heading, ScrollView } from 'native-base';
 import LogoSvg from '@assets/logo.svg';
 import BackgroundImg from '@assets/background.png';
@@ -6,18 +7,47 @@ import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
-import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+
+interface IData {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  password2: string;
+}
 
 export function SignUp() {
   const { goBack } = useNavigation<AuthNavigatorRoutesProps>();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassWord] = useState('');
-  const [password2, setPassWord2] = useState('');
 
-  function handleSignUp() {
-    console.log({ nome: name, password: password, email: email });
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      password: '',
+      password2: '',
+    },
+  });
+
+  function handleSignUp(data: IData) {
+    console.log(data);
   }
+
+  function onChange(arg: any) {
+    return {
+      value: arg.nativeEvent.text,
+    };
+  }
+
+  console.log('errors', errors);
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -40,28 +70,88 @@ export function SignUp() {
             Crie a conta
           </Heading>
 
-          <Input placeholder="Nome" onChangeText={setName} />
+          <Input placeholder="" />
 
-          <Input
-            placeholder="E-mail"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            onChangeText={setEmail}
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                placeholder="Nome"
+                autoCapitalize="none"
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+            name="name"
+            rules={{ required: true }}
           />
 
-          <Input
-            placeholder="Senha"
-            secureTextEntry
-            onChangeText={setPassWord}
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                placeholder="E-mail"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+            name="email"
+            rules={{ required: true }}
           />
 
-          <Input
-            placeholder="Confirmar a Senha"
-            secureTextEntry
-            onChangeText={setPassWord2}
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                placeholder="Telefone"
+                keyboardType="number-pad"
+                autoCapitalize="none"
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+            name="phone"
+            rules={{ required: true }}
           />
 
-          <Button title="Criar e Acessar" onPress={handleSignUp} />
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                placeholder="Senha"
+                autoCapitalize="none"
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+                secureTextEntry
+              />
+            )}
+            name="password"
+            rules={{ required: true }}
+          />
+
+          <Controller
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                placeholder="Confirmar a Senha"
+                autoCapitalize="none"
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+                secureTextEntry
+              />
+            )}
+            name="password2"
+            rules={{ required: true }}
+          />
+
+          <Button title="Criar e Acessar" onPress={() => {}} />
         </Center>
 
         <Button
