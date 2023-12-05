@@ -61,16 +61,13 @@ export function SignUp() {
             Crie a conta
           </Heading>
 
-          <Input placeholder="" />
-
           <Controller
             control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="Nome"
                 autoCapitalize="none"
-                onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={onChange}
                 value={value}
               />
             )}
@@ -80,13 +77,12 @@ export function SignUp() {
 
           <Controller
             control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="E-mail"
                 keyboardType="email-address"
                 autoCapitalize="none"
-                onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={onChange}
                 value={value}
               />
             )}
@@ -96,13 +92,12 @@ export function SignUp() {
 
           <Controller
             control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="Telefone"
                 keyboardType="number-pad"
                 autoCapitalize="none"
-                onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={onChange}
                 value={value}
               />
             )}
@@ -112,12 +107,11 @@ export function SignUp() {
 
           <Controller
             control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="Senha"
                 autoCapitalize="none"
-                onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={onChange}
                 value={value}
                 secureTextEntry
               />
@@ -128,12 +122,10 @@ export function SignUp() {
 
           <Controller
             control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="Confirmar a Senha"
                 autoCapitalize="none"
-                onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
                 value={value}
                 secureTextEntry
               />
