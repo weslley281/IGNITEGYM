@@ -15,6 +15,7 @@ interface IData {
   phone: string;
   password: string;
   password2: string;
+  level: string;
 }
 
 export function SignUp() {
@@ -27,24 +28,14 @@ export function SignUp() {
     control,
     reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<IData>({
     defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      password: '',
-      password2: '',
+      level: 'user',
     },
   });
 
   function handleSignUp(data: IData) {
     console.log(data);
-  }
-
-  function onChange(arg: any) {
-    return {
-      value: arg.nativeEvent.text,
-    };
   }
 
   console.log('errors', errors);
@@ -151,7 +142,10 @@ export function SignUp() {
             rules={{ required: true }}
           />
 
-          <Button title="Criar e Acessar" onPress={() => {}} />
+          <Button
+            title="Criar e Acessar"
+            onPress={handleSubmit(handleSignUp)}
+          />
         </Center>
 
         <Button
