@@ -61,6 +61,8 @@ export function SignUp() {
             Crie a conta
           </Heading>
 
+          <Text color={'white'}>{errors.name?.message}</Text>
+
           <Controller
             control={control}
             render={({ field: { onChange, value } }) => (
@@ -69,10 +71,11 @@ export function SignUp() {
                 autoCapitalize="none"
                 onChangeText={onChange}
                 value={value}
+                errorMessage={errors.email?.message}
               />
             )}
             name="name"
-            rules={{ required: true }}
+            rules={{ required: 'Preencha o nome' }}
           />
 
           <Controller
@@ -84,10 +87,17 @@ export function SignUp() {
                 autoCapitalize="none"
                 onChangeText={onChange}
                 value={value}
+                errorMessage={errors.phone?.message}
               />
             )}
             name="email"
-            rules={{ required: true }}
+            rules={{
+              required: 'Preencha o email',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'Email Inválido',
+              },
+            }}
           />
 
           <Controller
@@ -99,10 +109,11 @@ export function SignUp() {
                 autoCapitalize="none"
                 onChangeText={onChange}
                 value={value}
+                errorMessage={errors.password?.message}
               />
             )}
             name="phone"
-            rules={{ required: true }}
+            rules={{ required: 'Preencha o telefone' }}
           />
 
           <Controller
@@ -114,10 +125,11 @@ export function SignUp() {
                 onChangeText={onChange}
                 value={value}
                 secureTextEntry
+                errorMessage={errors.password2?.message}
               />
             )}
             name="password"
-            rules={{ required: true }}
+            rules={{ required: 'Preencha a senha' }}
           />
 
           <Controller
@@ -131,7 +143,7 @@ export function SignUp() {
               />
             )}
             name="password2"
-            rules={{ required: true }}
+            rules={{ required: 'Repita a senha' }}
           />
 
           <Button
